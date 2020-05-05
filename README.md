@@ -8,30 +8,6 @@ This repository contains data and source code for reproducing results of the pap
 _Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/)
 
 
-## Reference
-
-```bibtex
-@InProceedings{webis:2020d,
-  author =    {Maik Fr{\"o}be and 
-               Janek Bevendorff and 
-               {Jan Heinrich} Reimer and 
-               Martin Potthast and 
-               Matthias Hagen},
-  booktitle = {43nd International ACM Conference on Research and Development 
-               in Information Retrieval (SIGIR 2020)},
-  month =     jul,
-  publisher = {ACM},
-  site =      {Xi'an, China},
-  title =     {{Sampling Bias Due to Near-Duplicates in Learning to Rank}},
-  year =      2020
-}
-```
-Literature links:
-[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank), 
-DBPL, 
-DOI
-
-
 ## Usage
 
 
@@ -70,6 +46,30 @@ of the experiments locally:
 ## Datasets
 
 Our ClueWeb 09 features dataset can be found [here](data/features).
+
+
+## Reference
+
+```bibtex
+@InProceedings{webis:2020d,
+  author =    {Maik Fr{\"o}be and 
+               Janek Bevendorff and 
+               {Jan Heinrich} Reimer and 
+               Martin Potthast and 
+               Matthias Hagen},
+  booktitle = {43nd International ACM Conference on Research and Development 
+               in Information Retrieval (SIGIR 2020)},
+  month =     jul,
+  publisher = {ACM},
+  site =      {Xi'an, China},
+  title =     {{Sampling Bias Due to Near-Duplicates in Learning to Rank}},
+  year =      2020
+}
+```
+Literature links:
+[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank), 
+DBPL, 
+DOI
 
 
 ## Support
