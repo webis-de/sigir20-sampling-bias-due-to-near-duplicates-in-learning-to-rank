@@ -3,8 +3,8 @@ package de.webis.webisstud.thesis.reimer.ltr.files.source
 import de.webis.webisstud.thesis.reimer.data.dataDir
 import de.webis.webisstud.thesis.reimer.groups.FingerprintGroups
 import de.webis.webisstud.thesis.reimer.letor.hasLetorQuerySet
-import de.webis.webisstud.thesis.reimer.ltr.files.feature.ClueWeb09MergedFeatureVectorSource
-import de.webis.webisstud.thesis.reimer.ltr.files.feature.LetorFeatureVectorSource
+import de.webis.webisstud.thesis.reimer.ltr.files.feature.LetorCorpusFeatureVectorSource
+import de.webis.webisstud.thesis.reimer.ltr.files.feature.LetorTaskFeatureVectorSource
 import de.webis.webisstud.thesis.reimer.ltr.files.qrel.QrelSource
 import de.webis.webisstud.thesis.reimer.ltr.files.run.RunSource
 import de.webis.webisstud.thesis.reimer.model.*
@@ -16,9 +16,17 @@ import dev.reimer.kotlin.jvm.ktx.mapToMap
 val TrecTask.featureVectorSource: CachedMetadataSource<FeatureVector>
     get() {
         return when {
-            hasLetorQuerySet -> LetorFeatureVectorSource(this)
-            else -> when (corpus) {
-                Corpus.ClueWeb09 -> ClueWeb09MergedFeatureVectorSource(this)
+            hasLetorQuerySet -> LetorTaskFeatureVectorSource(this)
+            else -> when {
+                    corpus.hasLetorQuerySet -> {
+                        val documents = topics
+                            .asSequence()
+                            .flatMap { it.documents.asSequence() }
+                            .toSet()
+                        corpus.featureVectorSource.filter { vector ->
+                            documents.any { it.id == vector.documentId && it.topic.id == vector.topicId }
+                        }
+                    }
                 else -> emptySequence<FeatureVector>().toMetadataSource(FeatureVectorLineFormat)
             }
         }.cached(dataDir.resolve("features.fv"))
@@ -32,10 +40,14 @@ val TrecTask.qrelSource
 
 val Corpus.featureVectorSource: CachedMetadataSource<FeatureVector>
     get() {
-        return trecTasks
-                .flatMap(TrecTask::featureVectorSource)
-                .toMetadataSource(FeatureVectorLineFormat)
-                .cached(dataDir.resolve("features.fv"))
+        return when {
+            hasLetorQuerySet -> LetorCorpusFeatureVectorSource(this)
+            else -> {
+                trecTasks
+                    .flatMap(TrecTask::featureVectorSource)
+                    .toMetadataSource(FeatureVectorLineFormat)
+            }
+        }.cached(dataDir.resolve("features.fv"))
     }
 
 val Corpus.runSource: CachedMetadataSource<RunLine>
