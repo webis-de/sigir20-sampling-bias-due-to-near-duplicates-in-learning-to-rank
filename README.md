@@ -69,6 +69,10 @@ of the experiments locally:
 ```
 
 
+## Datasets
+
+Our ClueWeb 09 features dataset can be found [here](data/features).
+
 ## Support
 
 If you hit any problems reproducing our study, 
