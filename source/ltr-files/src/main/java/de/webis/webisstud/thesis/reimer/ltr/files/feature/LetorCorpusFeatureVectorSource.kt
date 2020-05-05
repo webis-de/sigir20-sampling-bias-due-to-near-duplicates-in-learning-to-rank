@@ -2,19 +2,20 @@ package de.webis.webisstud.thesis.reimer.ltr.files.feature
 
 import de.webis.webisstud.thesis.reimer.letor.hasLetorQuerySet
 import de.webis.webisstud.thesis.reimer.letor.letorQuerySet
+import de.webis.webisstud.thesis.reimer.model.Corpus
 import de.webis.webisstud.thesis.reimer.model.TrecTask
 import de.webis.webisstud.thesis.reimer.model.format.FeatureVectorLineFormat
 
-class LetorFeatureVectorSource(
-        private val task: TrecTask
+class LetorCorpusFeatureVectorSource(
+        private val corpus: Corpus
 ) : FeatureVectorSource() {
 
     init {
-        require(task.hasLetorQuerySet) { "No searchable index found for corpus." }
+        require(corpus.hasLetorQuerySet) { "Corpus ${corpus.name} doesn't have LETOR-like features." }
     }
 
     private val elements by lazy {
-        val vectorsFile = task
+        val vectorsFile = corpus
                 .letorQuerySet
                 .supervised
                 .normVectors
