@@ -7,8 +7,6 @@
 This repository contains data and source code for reproducing results of the paper:  
 _Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/)
 
-The source code is released under terms of the [MIT License](LICENSE).
-
 
 ## Reference
 
@@ -73,6 +71,7 @@ of the experiments locally:
 
 Our ClueWeb 09 features dataset can be found [here](data/features).
 
+
 ## Support
 
 If you hit any problems reproducing our study, 
@@ -82,6 +81,12 @@ please mail us:
 - [maik.froebe@informatik.uni-halle.de](mailto:maik.froebe@informatik.uni-halle.de)
 
 We're happy to help!
+
+
+## License
+
+The source code is released under terms of the [MIT License](LICENSE).  
+Our features dataset is licensed under terms of the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
 
 ## Abstract

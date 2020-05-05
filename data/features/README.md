@@ -55,6 +55,10 @@ We further provide 5-fold partitions for cross fold validation ([`Fold1`](ClueWe
 as well as a partition that contains the queries with the highest amount of
 near-duplicate documents ([`MostRedundantTraining`](ClueWeb09/MostRedundantTraining)).
 
+### License
+
+Our features dataset is licensed under terms of the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+
 ## LETOR features
 
 If you want to run our experiments on the GOV2 corpus, please download the [LETOR 4.0 dataset](https://www.microsoft.com/en-us/research/project/letor-learning-rank-information-retrieval/#!letor-4-0), and unpack the `MQ2007`, and `MQ2008` folders to `data/features/MQ2008`, or `data/features/MQ2007` respectively:
