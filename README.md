@@ -2,12 +2,13 @@
 [![Issues](https://img.shields.io/github/issues/webis-de/sigir-sampling-bias-ltr?style=flat-square)](https://github.com/webis-de/sigir-sampling-bias-ltr/issues)
 [![License](https://img.shields.io/github/license/webis-de/sigir-sampling-bias-ltr?style=flat-square)](LICENSE)
 
-# sigir-sampling-bias-ltr
+# Sampling Bias Due to Near-Duplicates in Learning to Rank
 
 This repository contains data and source code for reproducing results of the paper:  
-**Sampling Bias Due to Near-Duplicates in Learning to Rank**
+_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/)
 
 The source code is released under terms of the [MIT License](LICENSE).
+
 
 ## Reference
 
@@ -32,9 +33,52 @@ Literature links:
 DBPL, 
 DOI
 
+
 ## Usage
 
-_TODO_
+
+#### Clone
+
+Clone this repository:  
+```shell script
+git clone https://github.com/webis-de/sigir-sampling-bias-ltr.git
+```
+We recommend to enable [Git LFS](https://git-lfs.github.com/)
+for best performance.
+
+
+#### Build
+
+Ensure, the project builds on your machine:
+```shell script
+./gradlew build
+```
+
+
+#### Run experiments
+
+Run ranking experiments with Gradle
+(needs access to a configured [Yarn](http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html) cluster):
+```shell script
+./gradlew runClueWeb09TrainingRerankingExperimentsSpark
+```
+To test your configuration, you may run a small subset 
+of the experiments locally:
+```shell script
+./gradlew runClueWeb09TrainingRerankingExperiments
+```
+
+
+## Support
+
+If you hit any problems reproducing our study, 
+please mail us:
+
+- [jan.reimer@student.uni-halle.de](mailto:jan.reimer@student.uni-halle.de)
+- [maik.froebe@informatik.uni-halle.de](mailto:maik.froebe@informatik.uni-halle.de)
+
+We're happy to help!
+
 
 ## Abstract
 
