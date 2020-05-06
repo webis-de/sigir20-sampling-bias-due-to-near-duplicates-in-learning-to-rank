@@ -11,7 +11,7 @@ _Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](htt
 ## Usage
 
 
-#### Clone
+### Clone
 
 Clone this repository:  
 ```shell script
@@ -23,7 +23,7 @@ We recommend to enable [Git LFS](https://git-lfs.github.com/)
 for best performance.
 
 
-#### Build
+### Build
 
 Ensure, the project builds on your machine:
 
@@ -32,7 +32,7 @@ Ensure, the project builds on your machine:
 ```
 
 
-#### Run experiments
+### Run experiments
 
 Run ranking experiments with Gradle
 (needs access to a configured [Yarn](http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html) cluster):
@@ -75,6 +75,33 @@ of the experiments locally:
 ```
 
 </details>
+
+
+### Run evaluations on experiments
+
+Adjust timestamp in [source/evaluation/build.gradle.kts](source/evaluation/build.gradle.kts), and run evaluations on Spark.
+
+```shell script
+./gradlew runEvaluationSpark
+```
+
+
+### Split evaluation results
+
+Adjust timestamp in [source/evaluation/build.gradle.kts](source/evaluation/build.gradle.kts), and split evaluation results.
+
+```shell script
+./gradlew splitEvaluationResults
+```
+
+
+### Explore results
+
+Start [Jupyter](https://jupyter.org/) notebook to explore results.
+
+```shell script
+./gradlew startNotebooks
+```
 
 
 ### Requirements
