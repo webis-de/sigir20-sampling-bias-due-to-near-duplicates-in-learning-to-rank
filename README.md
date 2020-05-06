@@ -16,6 +16,8 @@ _Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](htt
 Clone this repository:  
 ```shell script
 git clone https://github.com/webis-de/sigir-sampling-bias-ltr.git
+cd sigir-sampling-bias-ltr
+git lfs fetch
 ```
 We recommend to enable [Git LFS](https://git-lfs.github.com/)
 for best performance.
