@@ -24,6 +24,7 @@ for best performance.
 #### Build
 
 Ensure, the project builds on your machine:
+
 ```shell script
 ./gradlew build
 ```
@@ -33,14 +34,33 @@ Ensure, the project builds on your machine:
 
 Run ranking experiments with Gradle
 (needs access to a configured [Yarn](http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html) cluster):
+
 ```shell script
 ./gradlew runClueWeb09TrainingRerankingExperimentsSpark
 ```
+
+<details><summary>GOV2</summary>
+
+```shell script
+./gradlew runGov2TrainingRerankingExperimentsSpark
+```
+
+</details>
+
 To test your configuration, you may run a small subset 
 of the experiments locally:
+
 ```shell script
 ./gradlew runClueWeb09TrainingRerankingExperiments
 ```
+
+<details><summary>GOV2</summary>
+
+```shell script
+./gradlew runGov2TrainingRerankingExperiments
+```
+
+</details>
 
 
 ## Datasets
@@ -66,10 +86,9 @@ Our ClueWeb 09 features dataset can be found [here](data/features).
   year =      2020
 }
 ```
-Literature links:
-[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank), 
-DBPL, 
-DOI
+
+_Literature links:
+[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank)_
 
 
 ## Support
