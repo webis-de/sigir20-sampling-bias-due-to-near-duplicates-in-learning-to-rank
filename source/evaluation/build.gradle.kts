@@ -55,7 +55,7 @@ tasks {
 		description = "Run evaluations on reranked runs from experiment on Spark cluster."
 		applicationResource.set(shadowJar.flatMap { it.archiveFile })
 		mainClass.set("de.webis.webisstud.thesis.reimer.evaluation.RunEvaluationKt")
-		applicationArguments.addAll("--spark", "2020-05-06-04-12")
+		applicationArguments.addAll("--spark", "2020-05-06-04-13")
 		applicationName.set("LTR evaluations")
 		deployMode.set(SparkSubmit.DeployMode.Cluster)
 		master.set("yarn")
