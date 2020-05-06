@@ -4,7 +4,7 @@ import de.webis.webisstud.thesis.reimer.data.Data
 import java.io.File
 
 private const val FOLD_COUNT = 5
-private val DATA_DIRECTORY = Data.letorDir
+private val DATA_DIRECTORY = Data.featuresDir
 
 sealed class Dataset(querySetId: String, rankingSettingTag: String?) {
 
