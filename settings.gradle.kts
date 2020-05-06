@@ -1,7 +1,8 @@
-rootProject.name = "sigir-sampling-bias-ltr"
+rootProject.name = "sigir20-sampling-bias-ltr"
 
 // Sub-projects to include in the build.
 // (Maintain lexicographic order.)
+include("notebooks")
 include("source")
 include("source:chatnoir")
 include("source:clueweb-webgraph")
