@@ -1,6 +1,6 @@
-[![CI](https://img.shields.io/github/workflow/status/webis-de/sigir20-sampling-bias-ltr/CI?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-ltr/actions?query=workflow%3ACI)
-[![Issues](https://img.shields.io/github/issues/webis-de/sigir20-sampling-bias-ltr?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-ltr/issues)
-[![License](https://img.shields.io/github/license/webis-de/sigir20-sampling-bias-ltr?style=flat-square)](LICENSE)
+[![CI](https://img.shields.io/github/workflow/status/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/CI?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/actions?query=workflow%3ACI)
+[![Issues](https://img.shields.io/github/issues/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/issues)
+[![License](https://img.shields.io/github/license/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank?style=flat-square)](LICENSE)
 
 # Sampling Bias Due to Near-Duplicates in Learning to Rank
 
@@ -15,8 +15,8 @@ _Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](htt
 
 Clone this repository:  
 ```shell script
-git clone https://github.com/webis-de/sigir20-sampling-bias-ltr.git
-cd sigir20-sampling-bias-ltr
+git clone https://github.com/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank.git
+cd sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank
 git lfs pull
 ```
 We recommend to enable [Git LFS](https://git-lfs.github.com/)
