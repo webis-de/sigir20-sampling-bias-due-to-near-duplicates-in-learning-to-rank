@@ -1,4 +1,4 @@
-rootProject.name = "sigir20-sampling-bias-ltr"
+rootProject.name = "sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank"
 
 // Sub-projects to include in the build.
 // (Maintain lexicographic order.)
