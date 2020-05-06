@@ -65,6 +65,11 @@ of the experiments locally:
 </details>
 
 
+### Requirements
+
+- [JDK 14](https://openjdk.java.net/) ([Kotlin](https://kotlinlang.org/) is loaded by [Gradle](https://gradle.org/))
+- [Python 3.8](https://www.python.org/downloads/) (via [Pipenv](https://pipenv.pypa.io/))
+
 ## Datasets
 
 Our ClueWeb 09 features dataset can be found [here](data/features).
