@@ -32,6 +32,7 @@ fun main(args: Array<String>) {
 	parser.parse(args)
 
 	val corpus = requireNotNull(Corpus.find(corpusString)) { "No corpus given." }
+
 	ExperimentConfigurations(corpus, debug)
 			.configurations
 			.runExperiments(useSpark, debug)
@@ -71,6 +72,7 @@ private fun Set<ExperimentConfiguration>.runExperiments(useSpark: Boolean, debug
 }
 
 private fun ExperimentConfiguration.runExperiment(debug: Boolean) {
+	FeatureVectorLineFormat.setOption(FeatureVectorLineFormat.Option.FixedPrecision, true)
 	log.info { "Start $this" }
 	val reranker = train(debug)
 	rerank(reranker)

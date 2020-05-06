@@ -1,44 +1,23 @@
 package de.webis.webisstud.thesis.reimer.ltr.files.source
 
-import de.webis.webisstud.thesis.reimer.data.dataDir
-import de.webis.webisstud.thesis.reimer.groups.FingerprintGroups
 import de.webis.webisstud.thesis.reimer.letor.hasLetorQuerySet
 import de.webis.webisstud.thesis.reimer.ltr.files.feature.LetorCorpusFeatureVectorSource
 import de.webis.webisstud.thesis.reimer.ltr.files.feature.LetorTaskFeatureVectorSource
-import de.webis.webisstud.thesis.reimer.ltr.files.qrel.QrelSource
-import de.webis.webisstud.thesis.reimer.ltr.files.run.RunSource
-import de.webis.webisstud.thesis.reimer.model.*
+import de.webis.webisstud.thesis.reimer.model.Corpus
+import de.webis.webisstud.thesis.reimer.model.FeatureVector
+import de.webis.webisstud.thesis.reimer.model.TrecTask
 import de.webis.webisstud.thesis.reimer.model.format.FeatureVectorLineFormat
-import de.webis.webisstud.thesis.reimer.model.format.QrelLineFormat
-import de.webis.webisstud.thesis.reimer.model.format.RunLineFormat
-import dev.reimer.kotlin.jvm.ktx.mapToMap
+import de.webis.webisstud.thesis.reimer.model.trecTasks
 
-val TrecTask.featureVectorSource: CachedMetadataSource<FeatureVector>
+private val TrecTask.featureVectorSource: MetadataSource<FeatureVector>
     get() {
         return when {
             hasLetorQuerySet -> LetorTaskFeatureVectorSource(this)
-            else -> when {
-                    corpus.hasLetorQuerySet -> {
-                        val documents = topics
-                            .asSequence()
-                            .flatMap { it.documents.asSequence() }
-                            .toSet()
-                        corpus.featureVectorSource.filter { vector ->
-                            documents.any { it.id == vector.documentId && it.topic.id == vector.topicId }
-                        }
-                    }
-                else -> emptySequence<FeatureVector>().toMetadataSource(FeatureVectorLineFormat)
-            }
-        }.cached(dataDir.resolve("features.fv"))
+            else -> emptySequence<FeatureVector>().toMetadataSource(FeatureVectorLineFormat)
+        }
     }
 
-val TrecTask.runSource
-    get() = RunSource(featureVectorSource).cached(dataDir.resolve("runs.txt"))
-
-val TrecTask.qrelSource
-    get() = QrelSource(this).cached(dataDir.resolve("qrels.txt"))
-
-val Corpus.featureVectorSource: CachedMetadataSource<FeatureVector>
+val Corpus.featureVectorSource: MetadataSource<FeatureVector>
     get() {
         return when {
             hasLetorQuerySet -> LetorCorpusFeatureVectorSource(this)
@@ -47,50 +26,5 @@ val Corpus.featureVectorSource: CachedMetadataSource<FeatureVector>
                     .flatMap(TrecTask::featureVectorSource)
                     .toMetadataSource(FeatureVectorLineFormat)
             }
-        }.cached(dataDir.resolve("features.fv"))
-    }
-
-val Corpus.runSource: CachedMetadataSource<RunLine>
-    get() {
-        return trecTasks
-                .flatMap(TrecTask::runSource)
-                .toMetadataSource(RunLineFormat)
-                .cached(dataDir.resolve("runs.txt"))
-    }
-
-val Corpus.qrelSource: CachedMetadataSource<Relevance>
-    get() {
-        return trecTasks
-                .flatMap(TrecTask::qrelSource)
-                .toMetadataSource(QrelLineFormat)
-                .cached(dataDir.resolve("qrels.txt"))
-    }
-
-fun CachedMetadataSource<FeatureVector>.getDuplicatesRemoved(groups: FingerprintGroups): CachedMetadataSource<FeatureVector> {
-    val duplicatesRemovedCache = cache.resolveSibling("duplicate-removed").resolve("features.fv")
-    return filter { vector ->
-        val documentId = vector.documentId
-        val group = groups.values.find {
-            documentId in it
-        }
-        group == null || group.first() == documentId
-    }.cached(duplicatesRemovedCache)
-}
-
-fun CachedMetadataSource<FeatureVector>.getSuccessiveDuplicates(groups: FingerprintGroups): Map<Long, Map<Int, CachedMetadataSource<FeatureVector>>> {
-    val allIds = map { it.documentId }.toList()
-    val topicGroups = groups.filterIds(allIds)
-    return topicGroups.mapToMap { group ->
-        val groupHash = group.hash
-        val groupDir = cache.resolveSibling("group-${groupHash}")
-        groupHash to group.idSubLists.asIterable().mapToMap { window ->
-            val windowSize = window.size
-            val windowDir = groupDir.resolve("take-${windowSize}")
-            windowSize to filter { vector ->
-                val documentId = vector.documentId
-                // Documents which are not in the group or in the current group window.
-                documentId !in group || documentId in window
-            }.cached(windowDir.resolve("features.fv")).cacheNow()
         }
     }
-}
