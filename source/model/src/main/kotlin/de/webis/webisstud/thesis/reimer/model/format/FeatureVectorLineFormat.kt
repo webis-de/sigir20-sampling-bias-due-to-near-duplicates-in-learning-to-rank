@@ -32,7 +32,7 @@ object FeatureVectorLineFormat : StringFormat<FeatureVector> {
                 .split(FEATURES_DELIMITER)
         val comment = from.substringAfter(COMMENT_DELIMITER_REGEX)
 
-        val topicId = requireNotNull(TOPIC_ID_REGEX.find(data[1])) {  }.groupValues[1]
+        val topicId = requireNotNull(TOPIC_ID_REGEX.find(data[1])).groupValues[1]
         val documentId = requireNotNull(DOCUMENT_ID_REGEX.find(comment)).groupValues[1]
         val relevance = data[0].toFloat()
         val features = data
