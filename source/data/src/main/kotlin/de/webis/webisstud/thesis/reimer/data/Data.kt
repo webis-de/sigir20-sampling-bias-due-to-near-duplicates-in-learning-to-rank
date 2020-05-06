@@ -36,7 +36,6 @@ object Data {
     }
 
     private val webisCephPaths = PathsDirectory(
-        System.getenv("WEBIS_CEPH_HOME"),
         "/mnt/ceph/storage/",
         "W:/"
     )
@@ -48,9 +47,8 @@ object Data {
     }
 
     private val dataPaths = PathsDirectory(
-        dataProperties.getProperty("data.path"),
-        System.getenv("BACHELOR_THESIS_DATA"),
         webisCephPaths.directoryOrNull?.resolve("data-in-progress/wstud-thesis-reimer")?.path,
+        dataProperties.getProperty("data.path"),
         "data"
     )
 
