@@ -9,7 +9,7 @@ import de.webis.webisstud.thesis.reimer.model.trecTasks
 import dev.reimer.kotlin.jvm.ktx.writeLinesTo
 import dev.reimer.serialization.jsonl.JsonL
 
-private val BASE_DIR = Data.letorDir.resolve("ClueWeb09").apply { mkdirs() }
+private val BASE_DIR = Data.featuresDir.resolve("ClueWeb09").apply { mkdirs() }
 private val NULL_FILE = BASE_DIR.resolve("NULL.txt")
 private val MIN_FILE = BASE_DIR.resolve("min.txt")
 private val NORM_FILE = BASE_DIR.resolve("Querylevelnorm.txt")
@@ -28,7 +28,7 @@ private fun copyPerTrecTask() {
 	val documentTaskLookup = Corpus.ClueWeb09
 			.trecTasks
 			.flatMap { task ->
-				val taskDir = Data.letorDir.resolve(task.name)
+				val taskDir = Data.featuresDir.resolve(task.name)
 				task.topics
 						.asSequence()
 						.flatMap { topic ->
