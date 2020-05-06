@@ -13,6 +13,7 @@ dependencies {
 	implementation(project(":source:ltr"))
 	implementation(project(":source:corpus-url"))
 	implementation(project(":source:groups"))
+	implementation(project(":source:groups-canonicalization"))
 	implementation(project(":source:data"))
 	implementation(project(":source:math"))
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")

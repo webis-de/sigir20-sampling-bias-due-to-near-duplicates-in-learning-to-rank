@@ -10,6 +10,8 @@ object DomainFairness : GroupFairnessRankingEvaluation<String?>() {
 
 	override val id = "domain-fairness"
 
+	override val continuationProbability = 0.7
+
 	override fun buildGroups(metadata: Set<Document.Metadata>, corpus: Corpus): Map<Document.Metadata, String?> {
 		val urls = corpus.urls
 		return metadata.mapToMap {

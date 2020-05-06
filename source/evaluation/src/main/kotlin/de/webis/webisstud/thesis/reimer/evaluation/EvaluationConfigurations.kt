@@ -1,10 +1,7 @@
 package de.webis.webisstud.thesis.reimer.evaluation
 
 import de.webis.webisstud.thesis.reimer.data.Data
-import de.webis.webisstud.thesis.reimer.evaluation.evaluation.DomainFairness
-import de.webis.webisstud.thesis.reimer.evaluation.evaluation.FirstIrrelevantWikipediaRank
-import de.webis.webisstud.thesis.reimer.evaluation.evaluation.FirstWikipediaRank
-import de.webis.webisstud.thesis.reimer.evaluation.evaluation.RunSize
+import de.webis.webisstud.thesis.reimer.evaluation.evaluation.*
 import de.webis.webisstud.thesis.reimer.evaluation.sampling.DuplicatesIrrelevantRunUndersampling
 import de.webis.webisstud.thesis.reimer.evaluation.sampling.RemoveDuplicatesRunUndersampling
 import de.webis.webisstud.thesis.reimer.ltr.Identity
@@ -29,17 +26,19 @@ class EvaluationConfigurations(
 		)
 
 		internal val rankingEvaluations = arrayOf(
+				FirstDuplicateRank.perTopic().onSplits(Split.Test),
+				FirstIrrelevantDuplicateRank.perTopic().onSplits(Split.Test),
 				FirstWikipediaRank.perTopic().onSplits(Split.Test),
+				FirstIrrelevantWikipediaRank.perTopic().onSplits(Split.Test),
 //				TopicNames.onSplits(Split.Test),
 //				AverageWikipediaRank.perTopic().onSplits(Split.Test),
 //				SubListDuplicateCount.perTopic().onSplits(Split.Test),
 				DomainFairness.perTopic().onSplits(Split.Test),
-				MetricType.Map.asEvaluation().perTopic().onSplits(Split.Test),
+//				RunSize,
+//				MetricType.Map.asEvaluation().perTopic().onSplits(Split.Test),
 //				MetricType.Ndcg.asEvaluation().perTopic().onSplits(Split.Test),
 				MetricType.Ndcg(10).asEvaluation().perTopic().onSplits(Split.Test),
-				MetricType.Ndcg(20).asEvaluation().perTopic().onSplits(Split.Test),
-				FirstIrrelevantWikipediaRank.perTopic().onSplits(Split.Test),
-				RunSize
+				MetricType.Ndcg(20).asEvaluation().perTopic().onSplits(Split.Test)
 		)
 
 	}
