@@ -68,14 +68,13 @@ class LetorSplits(
 				.map { task ->
 					task.id to task.letorQuerySet
 				}
-		querySets.flatMap { (task, letorQuerySet) ->
+		querySets.flatMap { (id, letorQuerySet) ->
 			letorQuerySet.supervised.partitionFolds
 					.asSequence()
-					.mapIndexed { index, partitions ->
-						Splitter("letor-${task}-fold-${index + 1}", partitions)
+					.map { partitions ->
+						Splitter("${id}-${partitions.path.name.toLowerCase()}", partitions)
 					}
-		}
-				.toSet()
+		}.toSet()
 	}
 
 	override val size get() = splitters.size
