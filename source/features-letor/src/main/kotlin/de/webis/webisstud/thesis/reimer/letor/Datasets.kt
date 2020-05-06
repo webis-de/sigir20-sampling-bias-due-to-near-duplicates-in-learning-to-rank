@@ -12,6 +12,12 @@ sealed class Dataset(querySetId: String, rankingSettingTag: String?) {
     val path = DATA_DIRECTORY.resolve(name)
     val archive = DATA_DIRECTORY.resolve("$name.rar") // TODO Un-RAR archive if [path] is not found.
 
+    init {
+        if (!path.exists()) {
+            System.err.println("LETOR dataset not found, probably need to download the dataset.")
+        }
+    }
+
     val partitionFolds by lazy {
         val partitions: List<File> = path
                 .listFiles { file: File -> file.isDirectory }

@@ -5,37 +5,45 @@ enum class QuerySet(id: String) {
     MillionQuery2008("MQ2008"),
     ClueWeb09("ClueWeb09");
 
-    val supervised = NullMinNormDataset(
+    val supervised by lazy {
+        NullMinNormDataset(
             querySetId = id,
             rankingSettingTag = null,
             nullVectorsName = "NULL",
             minVectorsName = "min",
             normVectorsName = "Querylevelnorm",
             normVectorsFoldsNamePrefix = "S"
-    )
+        )
+    }
 
-    val semiSupervised = NullMinNormDataset(
+    val semiSupervised by lazy {
+        NullMinNormDataset(
             querySetId = id,
             rankingSettingTag = "semi",
             nullVectorsName = "Large_NULL",
             minVectorsName = "Large_min",
             normVectorsName = "Large_norm",
             normVectorsFoldsNamePrefix = "L"
-    )
+        )
+    }
 
-    val aggregation = AggregationDataset(
+    val aggregation by lazy {
+        AggregationDataset(
             querySetId = id,
             rankingSettingTag = "agg",
             aggregationVectorsName = "agg",
             aggregationVectorsFoldsNamePrefix = "A"
-    )
+        )
+    }
 
-    val listWise = NullMinNormDataset(
+    val listWise by lazy {
+        NullMinNormDataset(
             querySetId = id,
             rankingSettingTag = "list",
             nullVectorsName = "List_NULL",
             minVectorsName = "List_min",
             normVectorsName = "List_norm",
             normVectorsFoldsNamePrefix = "I"
-    )
+        )
+    }
 }

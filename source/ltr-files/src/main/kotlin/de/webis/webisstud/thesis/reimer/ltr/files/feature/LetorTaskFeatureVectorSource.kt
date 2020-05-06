@@ -18,11 +18,10 @@ class LetorTaskFeatureVectorSource(
                 .letorQuerySet
                 .supervised
                 .normVectors
-        println("Load features <- ${vectorsFile.path}") // TODO
-        vectorsFile
-                .useLines { lines ->
-                    lines.map(FeatureVectorLineFormat::parse).toList()
-                }
+        println("Load features <- ${vectorsFile.path}")
+        vectorsFile.useLines { lines ->
+            lines.map(FeatureVectorLineFormat::parse).toList()
+        }
     }
 
     override fun iterator() = elements.iterator()

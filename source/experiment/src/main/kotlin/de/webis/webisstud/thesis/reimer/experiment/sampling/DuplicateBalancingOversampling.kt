@@ -2,13 +2,10 @@ package de.webis.webisstud.thesis.reimer.experiment.sampling
 
 import de.webis.webisstud.thesis.reimer.groups.FingerprintGroup
 import de.webis.webisstud.thesis.reimer.groups.fingerprintGroups
-import de.webis.webisstud.thesis.reimer.ltr.files.source.featureVectorSource
 import de.webis.webisstud.thesis.reimer.ltr.sampling.Sampling
-import de.webis.webisstud.thesis.reimer.ltr.sampling.sample
 import de.webis.webisstud.thesis.reimer.ltr.split.Split
 import de.webis.webisstud.thesis.reimer.model.Corpus
 import de.webis.webisstud.thesis.reimer.model.FeatureVector
-import de.webis.webisstud.thesis.reimer.model.trecTopics
 import dev.reimer.kotlin.jvm.ktx.lcm
 
 /**
@@ -47,18 +44,18 @@ object DuplicateBalancingOversampling : Sampling {
 	}
 
 
-	@JvmStatic
-	fun main(args: Array<String>) {
-		val corpus = Corpus.ClueWeb09
-		val featureVectors = corpus.featureVectorSource
-		val topics = corpus.trecTopics
-				.toList().shuffled()
-				.take(10)
-				.map { it.id }
-		featureVectors
-				.filter { it.topicId in topics }
-				.toList()
-				.sample(DuplicateBalancingOversampling, Split.Training, corpus)
-	}
+//	@JvmStatic
+//	fun main(args: Array<String>) {
+//		val corpus = Corpus.ClueWeb09
+//		val featureVectors = corpus.featureVectorSource
+//		val topics = corpus.trecTopics
+//				.toList().shuffled()
+//				.take(10)
+//				.map { it.id }
+//		featureVectors
+//				.filter { it.topicId in topics }
+//				.toList()
+//				.sample(DuplicateBalancingOversampling, Split.Training, corpus)
+//	}
 }
 
