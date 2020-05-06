@@ -1,0 +1,7 @@
+# Ignore everything except ClueWeb features.
+*
+!features/ClueWeb09
+!features/Web2009
+!features/Web2010
+!features/Web2011
+!features/Web2012
