@@ -5,7 +5,7 @@
 # Sampling Bias Due to Near-Duplicates in Learning to Rank
 
 This repository contains data and source code for reproducing results of the paper:  
-_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/)
+_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/).
 
 
 ## Usage
@@ -37,11 +37,17 @@ Ensure, the project builds on your machine:
 Run ranking experiments with Gradle
 (needs access to a configured [Yarn](http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html) cluster):
 
+**ClueWeb 09**
+
 ```shell script
 ./gradlew runClueWeb09TrainingRerankingExperimentsSpark
 ```
 
-<details><summary>GOV2</summary>
+<details><summary>
+
+**GOV2** (requires LETOR 4.0)
+
+</summary>
 
 ```shell script
 ./gradlew runGov2TrainingRerankingExperimentsSpark
@@ -52,11 +58,17 @@ Run ranking experiments with Gradle
 To test your configuration, you may run a small subset 
 of the experiments locally:
 
+**ClueWeb 09**
+
 ```shell script
 ./gradlew runClueWeb09TrainingRerankingExperiments
 ```
 
-<details><summary>GOV2</summary>
+<details><summary>
+
+**GOV2** (requires LETOR 4.0)
+
+</summary>
 
 ```shell script
 ./gradlew runGov2TrainingRerankingExperiments
