@@ -1,7 +1,6 @@
 package de.webis.webisstud.thesis.reimer
 
 import de.webis.webisstud.thesis.reimer.data.dataDir
-import de.webis.webisstud.thesis.reimer.groups.canonical.CanonicalFingerprintGroups
 import de.webis.webisstud.thesis.reimer.groups.canonical.canonicalFingerprintGroups
 import de.webis.webisstud.thesis.reimer.ltr.split.FeatureVectorSplitter
 import de.webis.webisstud.thesis.reimer.ltr.split.Split
@@ -20,31 +19,39 @@ fun main(args: Array<String>) {
     val corpus = Corpus.valueOfCaseInsensitive(args[0])
     val splits = corpus.featureVectorSplitters
     val topics = corpus.trecTopics.toSet()
-    val groups = corpus.canonicalFingerprintGroups
+    val isCanonical = corpus.canonicalFingerprintGroups
+        .flatMap { (_, group) ->
+            val globalCanonical = group.globalCanonical
+            group.ids.map { it to (it == globalCanonical) }
+        }
+        .toMap()
     splits.asSequence()
-            .map {
-                it to it.printCountRedundancyRelevance(topics, groups)
-            }
-            .map { (split, stats) ->
-                val (trainingStats, testStats) = stats
-                """    ${split.id} & ${trainingStats.size} & ${trainingStats.redundant} & ${(trainingStats.relevanceDegree * 100).roundToInt()}\,\% & ${testStats.size} & ${testStats.redundant} & ${(testStats.relevanceDegree * 100).roundToInt()}\,\% \\"""
-            }
-            .prepend(
-                    """\begin{tabular}{@{}l@{\quad}rrr@{\quad}rrr@{}}""",
-                    """    \toprule""",
-                    """    & \multicolumn{3}{@{}c@{}}{\textbf{Training Labels}} & \multicolumn{3}{@{}c@{}}{\textbf{Test Labels}} \\""",
-                    """    \cmidrule(r{1em}){2-4} \cmidrule{5-7}""",
-                    """    & Count & Red.\ & Rel.\ & Count & Red.\ & Rel.\ \\""",
-                    """    \midrule"""
-            )
-            .append(
-                    """    \bottomrule""",
-                    """\end{tabular}"""
-            )
-            .writeLinesTo(corpus.dataDir.resolve("train-test-splits.tex").apply { prepareNewFile() })
+        .map {
+            it to it.countRedundancyRelevance(topics, isCanonical)
+        }
+        .map { (split, stats) ->
+            val (trainingStats, testStats) = stats
+            """    ${split.id} & ${trainingStats.size} & ${(trainingStats.relevanceDegree * 100).roundToInt()}\,\% & ${trainingStats.redundantSize} & ${trainingStats.canonicalSize} & ${testStats.size} & ${(testStats.relevanceDegree * 100).roundToInt()}\,\% & ${testStats.redundantSize} & ${testStats.canonicalSize} \\"""
+        }
+        .prepend(
+            """\begin{tabular}{l@{\quad}rrrrr@{\quad}rrrrr}""",
+            """    \toprule""",
+            """    & \multicolumn{4}{c@{\quad}}{\textbf{Training Labels}} & \multicolumn{4}{c}{\textbf{Test Labels}} \\""",
+            """    \cmidrule(r{1em}){2-5} \cmidrule{6-9}""",
+            """    & Count & \%\,Rel. & Red. & Canon. & Count & \%\,Rel. & Red. & Canon. \\""",
+            """    \midrule"""
+        )
+        .append(
+            """    \bottomrule""",
+            """\end{tabular}"""
+        )
+        .writeLinesTo(corpus.dataDir.resolve("train-test-splits.tex").apply { prepareNewFile() })
 }
 
-private fun FeatureVectorSplitter.printCountRedundancyRelevance(allTopics: Set<JudgedTopic<JudgedDocument>>, groups: CanonicalFingerprintGroups): Pair<SplitStats, SplitStats> {
+private fun FeatureVectorSplitter.countRedundancyRelevance(
+    allTopics: Set<JudgedTopic<JudgedDocument>>,
+    isCanonical: Map<String, Boolean>
+): Pair<SplitStats, SplitStats> {
     println("Split: $id")
 
     val metadata = allTopics.flatMap { it.documents }
@@ -52,27 +59,35 @@ private fun FeatureVectorSplitter.printCountRedundancyRelevance(allTopics: Set<J
     val testDocuments = metadata.filter { getSplit(it.asMetadata()) == Split.Test }
 
     print("Training: ")
-    val trainingStats = trainingDocuments.printCountRedundancyRelevance(groups)
+    val trainingStats = trainingDocuments.countRedundancyRelevance(isCanonical)
     print("Test: ")
-    val testStats = testDocuments.printCountRedundancyRelevance(groups)
+    val testStats = testDocuments.countRedundancyRelevance(isCanonical)
     println()
 
     return trainingStats to testStats
 }
 
-private fun List<JudgedDocument>.printCountRedundancyRelevance(groups: CanonicalFingerprintGroups): SplitStats {
-    val count = size
-    print("count=$count, ")
-    val redundantIds: Set<String> = groups.groups.flatMapTo(mutableSetOf()) { it.ids }
-    val redundant = filter { it.id in redundantIds }
-    val redundancy = redundant.size
-    val redundancyDegree = redundancy.toDouble() / count
-    print("redundancy=${redundancy} (${(redundancyDegree * 100).roundToInt()}%), ")
-    val relevance = redundant.filter { it.isRelevant }.size.toFloat() / redundant.size
-    print("redundant-relevance=${(relevance * 100).roundToInt()}%")
-    println()
-
-    return SplitStats(count, redundancy, relevance)
+private fun List<JudgedDocument>.countRedundancyRelevance(isCanonical: Map<String, Boolean>): SplitStats {
+    val relevant = filter { it.isRelevant }
+    val redundant = filter { isCanonical.containsKey(it.id) }
+    val redundantRelevant = redundant intersect relevant
+    val canonical = redundant.filter { isCanonical.getValue(it.id) }
+    val canonicalRelevant = canonical intersect redundantRelevant
+    return SplitStats(
+        size,
+        relevant.size.toFloat() / size,
+        redundant.size,
+        redundantRelevant.size.toFloat() / redundant.size,
+        canonical.size,
+        canonicalRelevant.size.toFloat() / canonical.size
+    )
 }
 
-data class SplitStats(val size: Int, val redundant: Int, val relevanceDegree: Float)
+private data class SplitStats(
+    val size: Int,
+    val relevanceDegree: Float,
+    val redundantSize: Int,
+    val redundantRelevanceDegree: Float,
+    val canonicalSize: Int,
+    val canonicalRelevanceDegree: Float
+)
