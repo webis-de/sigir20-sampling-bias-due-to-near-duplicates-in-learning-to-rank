@@ -2,7 +2,7 @@ package de.webis.webisstud.thesis.reimer.evaluation
 
 import de.webis.webisstud.thesis.reimer.data.Data
 import de.webis.webisstud.thesis.reimer.evaluation.evaluation.*
-import de.webis.webisstud.thesis.reimer.evaluation.sampling.DuplicatesIrrelevantRunUndersampling
+import de.webis.webisstud.thesis.reimer.evaluation.sampling.DuplicatesIrrelevantRunSampling
 import de.webis.webisstud.thesis.reimer.evaluation.sampling.RemoveDuplicatesRunUndersampling
 import de.webis.webisstud.thesis.reimer.ltr.Identity
 import de.webis.webisstud.thesis.reimer.ltr.MetricType
@@ -21,7 +21,7 @@ class EvaluationConfigurations(
 
 		internal val runSamplings = arrayOf(
 				RemoveDuplicatesRunUndersampling,
-				DuplicatesIrrelevantRunUndersampling,
+				DuplicatesIrrelevantRunSampling,
 				Identity
 		)
 
