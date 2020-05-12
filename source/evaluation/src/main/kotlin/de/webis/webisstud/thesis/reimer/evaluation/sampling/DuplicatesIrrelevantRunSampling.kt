@@ -6,9 +6,9 @@ import de.webis.webisstud.thesis.reimer.ltr.JudgedRunLine
 import de.webis.webisstud.thesis.reimer.ltr.sampling.RunSampling
 import de.webis.webisstud.thesis.reimer.model.Corpus
 
-object RemoveDuplicatesRunUndersampling : RunSampling {
+object DuplicatesIrrelevantRunSampling : RunSampling {
 
-    override val id = "remove-duplicates"
+    override val id = "duplicates-irrelevant"
 
     override fun sample(items: List<JudgedRunLine>, corpus: Corpus): List<JudgedRunLine> {
         val groups = corpus.fingerprintGroups.groups
@@ -21,19 +21,15 @@ object RemoveDuplicatesRunUndersampling : RunSampling {
     private fun sampleTopic(items: List<JudgedRunLine>, groups: Set<FingerprintGroup>): List<JudgedRunLine> {
         val includedGroups = mutableSetOf<Long>()
         return items
-            .filter { runLine ->
+            .map { runLine ->
                 when (val group = groups.find { runLine.documentId in it.ids }?.hash) {
-                    null -> true
-                    in includedGroups -> false
+                    null -> runLine
+                    in includedGroups -> runLine.copy(relevance = runLine.relevance.copy(judgement = 0))
                     else -> {
                         includedGroups += group
-                        true
+                        runLine
                     }
                 }
-            }
-            .mapIndexed { index, runLine ->
-                // Fix run line positions.
-                runLine.copy(runLine = runLine.runLine.copy(position = index + 1))
             }
     }
 }
