@@ -47,7 +47,7 @@ interface CanonicalFingerprintGroup : Map<String, Set<String>> {
     val globalCanonical: String
         get() {
             val bySize: Comparator<Map.Entry<String, Set<String>>> = compareBy { (_, ids) -> ids.size }
-            val byId: Comparator<Map.Entry<String, Set<String>>> = compareBy { (_, ids) -> ids.size }
+            val byId: Comparator<Map.Entry<String, Set<String>>> = compareBy { (id, _) -> id }
             val (canonicalId, _) = checkNotNull(canonicalGroups.maxWith(bySize.reversed().thenComparing(byId)))
             return canonicalId
         }
