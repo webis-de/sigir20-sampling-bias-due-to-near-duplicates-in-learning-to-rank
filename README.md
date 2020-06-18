@@ -6,7 +6,8 @@
 # Sampling Bias Due to Near-Duplicates in Learning to Rank
 
 This repository contains data and source code for reproducing results of the paper:  
-_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/).
+_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/).  
+[Read abstract.](#abstract)
 
 
 ## Usage
