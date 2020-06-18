@@ -45,11 +45,7 @@ Run ranking experiments with Gradle
 ./gradlew runClueWeb09TrainingRerankingExperimentsSpark
 ```
 
-<details><summary>
-
-**GOV2** (requires LETOR 4.0)
-
-</summary>
+<details><summary><strong>GOV2</strong> (requires LETOR 4.0)</summary>
 
 ```shell script
 ./gradlew runGov2TrainingRerankingExperimentsSpark
@@ -66,11 +62,7 @@ of the experiments locally:
 ./gradlew runClueWeb09TrainingRerankingExperiments
 ```
 
-<details><summary>
-
-**GOV2** (requires LETOR 4.0)
-
-</summary>
+<details><summary><strong>GOV2</strong> (requires LETOR 4.0)</summary>
 
 ```shell script
 ./gradlew runGov2TrainingRerankingExperiments
