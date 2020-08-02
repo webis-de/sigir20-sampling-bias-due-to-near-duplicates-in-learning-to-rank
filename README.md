@@ -3,6 +3,7 @@
 [![Issues](https://img.shields.io/github/issues/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/issues)
 [![License](https://img.shields.io/github/license/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank?style=flat-square)](LICENSE)
 
+
 # Sampling Bias Due to Near-Duplicates in Learning to Rank
 
 This repository contains data and source code for reproducing results of the paper:  
@@ -131,7 +132,7 @@ _Literature links:
 [DOI](https://doi.org/10.1145/3397271.3401212),
 [ACM Digital Library](https://dl.acm.org/doi/10.1145/3397271.3401212),
 [Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank)_
-
+[DBLP](https://dblp.org/rec/conf/sigir/FrobeBRPH20)
 
 ## Support
 
