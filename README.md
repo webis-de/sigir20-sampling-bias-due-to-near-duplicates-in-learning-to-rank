@@ -131,7 +131,7 @@ Our ClueWeb 09 features dataset can be found [here](data/features).
 _Literature links:
 [DOI](https://doi.org/10.1145/3397271.3401212),
 [ACM Digital Library](https://dl.acm.org/doi/10.1145/3397271.3401212),
-[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank)_
+[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank)_,
 [DBLP](https://dblp.org/rec/conf/sigir/FrobeBRPH20)
 
 ## Support
