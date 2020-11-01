@@ -1,11 +1,14 @@
+[![DOI](https://img.shields.io/badge/DOI-10.1145%2F3397271.3401212-blue?style=flat-square)](https://doi.org/10.1145/3397271.3401212)
 [![CI](https://img.shields.io/github/workflow/status/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/CI?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/actions?query=workflow%3ACI)
 [![Issues](https://img.shields.io/github/issues/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank?style=flat-square)](https://github.com/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank/issues)
 [![License](https://img.shields.io/github/license/webis-de/sigir20-sampling-bias-due-to-near-duplicates-in-learning-to-rank?style=flat-square)](LICENSE)
 
+
 # Sampling Bias Due to Near-Duplicates in Learning to Rank
 
 This repository contains data and source code for reproducing results of the paper:  
-_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/).
+_Sampling Bias Due to Near-Duplicates in Learning to Rank_ from [SIGIR 2020](https://sigir.org/sigir2020/).  
+[Read abstract.](#abstract)
 
 
 ## Usage
@@ -43,11 +46,7 @@ Run ranking experiments with Gradle
 ./gradlew runClueWeb09TrainingRerankingExperimentsSpark
 ```
 
-<details><summary>
-
-**GOV2** (requires LETOR 4.0)
-
-</summary>
+<details><summary><strong>GOV2</strong> (requires LETOR 4.0)</summary>
 
 ```shell script
 ./gradlew runGov2TrainingRerankingExperimentsSpark
@@ -64,11 +63,7 @@ of the experiments locally:
 ./gradlew runClueWeb09TrainingRerankingExperiments
 ```
 
-<details><summary>
-
-**GOV2** (requires LETOR 4.0)
-
-</summary>
+<details><summary><strong>GOV2</strong> (requires LETOR 4.0)</summary>
 
 ```shell script
 ./gradlew runGov2TrainingRerankingExperiments
@@ -134,8 +129,10 @@ Our ClueWeb 09 features dataset can be found [here](data/features).
 ```
 
 _Literature links:
-[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank)_
-
+[DOI](https://doi.org/10.1145/3397271.3401212),
+[ACM Digital Library](https://dl.acm.org/doi/10.1145/3397271.3401212),
+[Webis publications](https://webis.de/publications.html?q=Sampling+Bias+Due+to+Near-Duplicates+in+Learning+to+Rank)_,
+[DBLP](https://dblp.org/rec/conf/sigir/FrobeBRPH20)
 
 ## Support
 
