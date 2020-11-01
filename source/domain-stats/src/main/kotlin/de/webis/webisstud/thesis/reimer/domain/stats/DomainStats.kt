@@ -20,7 +20,7 @@ fun main(vararg args: String) {
 	val dataDir = corpus.dataDir
 	val fileNameSuffix = if (onlyDuplicates) "-redundant" else ""
 	stats.saveJsonL(dataDir.resolve("domain-stats$fileNameSuffix.jsonl"))
-	stats.saveLatexTable(dataDir.resolve("domain-stats$fileNameSuffix.tex"), 10)
+	stats.saveLatexTable(dataDir.resolve("domain-stats$fileNameSuffix.tex"), 100)
 	stats.saveDomainLatexTable(dataDir.resolve("wikipedia-stats$fileNameSuffix.tex"), "wikipedia.org")
 	stats.printDomainPortion("wikipedia.org")
 	stats.printGlobalRelevanceDegree()
