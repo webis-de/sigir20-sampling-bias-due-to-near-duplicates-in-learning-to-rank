@@ -13,6 +13,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 14
+          distribution: temurin
       - name: "💪 Grant execute permission for gradlew"
         run: "chmod +x gradlew"
       - name: "🏗️ Build with Gradle"
@@ -28,6 +29,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 14
+          distribution: temurin
       - name: "💪 Grant execute permission for gradlew"
         run: "chmod +x gradlew"
       - name: "✅ Test with Gradle"
