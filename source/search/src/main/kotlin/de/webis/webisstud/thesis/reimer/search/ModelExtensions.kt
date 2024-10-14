@@ -1,6 +1,6 @@
 package de.webis.webisstud.thesis.reimer.search
 
-import com.heinrichreimer.elasticsearch.kotlin.dsl.rest.search
+import com.janheinrichmerker.elasticsearch.kotlin.dsl.rest.search
 import de.webis.webisstud.thesis.reimer.model.Corpus
 import de.webis.webisstud.thesis.reimer.model.TopicTask
 import de.webis.webisstud.thesis.reimer.model.trecDocuments

@@ -1,6 +1,6 @@
 package de.webis.webisstud.thesis.reimer.search
 
-import com.heinrichreimer.elasticsearch.kotlin.dsl.rest.restHighLevelClientOf
+import com.janheinrichmerker.elasticsearch.kotlin.dsl.rest.restHighLevelClientOf
 import org.apache.http.HttpHost
 
 object WebisCluster {
