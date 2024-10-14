@@ -139,7 +139,7 @@ _Literature links:
 If you hit any problems reproducing our study, 
 please mail us:
 
-- [jan.reimer@student.uni-halle.de](mailto:jan.reimer@student.uni-halle.de)
+- [heinrich.merker@uni-jena.de](mailto:heinrich.merker@uni-jena.de)
 - [maik.froebe@informatik.uni-halle.de](mailto:maik.froebe@informatik.uni-halle.de)
 
 We're happy to help!
